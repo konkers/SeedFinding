@@ -42,10 +42,38 @@ namespace SeedFinding
             //
             bool runBoilerSearch = false;
 
+            bool runDay0 = false;
+            bool runDay1 = true;
+
+            long multiPlayerId = -7347405514601242418;
+
             // Quick and dirty call to specific searches.  Adjust this as needed for your searches.
             if (true)
             {
                 Game1.UseLegacyRandom = false;
+
+                if (runDay0)
+                {
+                    Console.WriteLine("Searching for fishy day 0 seed");
+                    int numSeeds = Int32.MaxValue;
+                    double time = CanadiaSeeding.Day0Search(multiPlayerId, numSeeds, blockSize, out List<int> validSeeds, true);
+                    foreach (var item in validSeeds)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine($"Total Time: {time} (sps: {numSeeds / time})");
+                }
+                if (runDay1)
+                {
+                    Console.WriteLine("Searching for fishy day 1 seed");
+                    int numSeeds = Int32.MaxValue;
+                    double time = CanadiaSeeding.Day1Search(multiPlayerId, numSeeds, blockSize, out List<int> validSeeds, true);
+                    foreach (var item in validSeeds)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine($"Total Time: {time} (sps: {numSeeds / time})");
+                }
                 //return;
                 //Console.WriteLine(String.Join(",",new List<string>(TravelingCart.GetStock(359003761, 5).Select(o=>Item.Get(o.Id).Name))));
                 //Console.WriteLine(String.Join(",", Trash1_6.Trash.getAllTrash(48462440, 12, 0.1)));
@@ -59,8 +87,8 @@ namespace SeedFinding
                 // Console.WriteLine(String.Join(",",new List<string>(TravelingCart.GetStock(184400, 5).Select(o=>Item.Get(o.Id).Name))));
                 // return;
                 //Console.WriteLine(StepPredictions.Predict(371897450, 12, 24, new List<string>(){"Lewis","Robin"}));
-                Console.WriteLine(Weather.getWeather(20, 189726570));
-                Console.WriteLine(Weather.getWeather(21, 189726570));
+                //Console.WriteLine(Weather.getWeather(20, 189726570));
+                //Console.WriteLine(Weather.getWeather(21, 189726570));
                 //MarriageSpeedrun.Curate();
                 //MarriageSpeedrun.ValidSeedv2(211391466, false);
                 //Console.WriteLine(Trash1_6.Trash.getTrash(833453617, 2, Trash1_6.Trash.Can.Gus, 0.1));
@@ -71,13 +99,13 @@ namespace SeedFinding
                 //TextWriter tmp = Console.Out;
                 //StreamWriter sw = new StreamWriter(fs);
                 //Console.SetOut(sw);
-                int numSeeds = Int32.MaxValue;
-                double time = MarriageSpeedrun.Search(-1 + 1, numSeeds, blockSize, out List<int> validSeeds);
-                foreach (var item in validSeeds)
-                {
-                    Console.WriteLine(item);
-                }
-                Console.WriteLine($"Total Time: {time} (sps: {numSeeds / time})");
+                // int numSeeds = Int32.MaxValue;
+                // double time = MarriageSpeedrun.Search(-1 + 1, numSeeds, blockSize, out List<int> validSeeds);
+                // foreach (var item in validSeeds)
+                // {
+                //     Console.WriteLine(item);
+                // }
+                // Console.WriteLine($"Total Time: {time} (sps: {numSeeds / time})");
                 // Console.SetOut(tmp);
                 // sw.Close();
 
@@ -148,7 +176,7 @@ namespace SeedFinding
             }
 
 
-               
+
 
         }
     }
